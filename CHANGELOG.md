@@ -1,3 +1,7 @@
-## 0.0.1
+## [1.0.0] - 2024-11-30
 
-* TODO: Describe initial release.
+- Initial release with the following features:
+  - VPN preparation.
+  - Socket protection.
+  - Session management.
+  - Address and route management.

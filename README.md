@@ -2,17 +2,12 @@
 
 A Flutter plugin for managing VPN services on Android. This plugin allows you to programmatically establish and configure VPN connections, protect sockets, and handle network routing. It is primarily designed to be used within Flutter apps that need VPN capabilities.
 
-# Changelog
+## Features
 
-## [1.0.0] - 2024-11-30
-
-### Added
-
-- Initial release with the following features:
-  - VPN preparation.
-  - Socket protection.
-  - Session management.
-  - Address and route management.
+- Prepare and establish a VPN connection.
+- Protect specific sockets from the VPN.
+- Set session information for the VPN.
+- Add IP addresses and routes to the VPN configuration.
 
 ## Installation
 
