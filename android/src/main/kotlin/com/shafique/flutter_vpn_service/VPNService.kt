@@ -34,7 +34,7 @@ class FlutterVpnService : VpnService(), MethodChannel.MethodCallHandler {
             "setSession" -> {
                 val sessionName = call.argument<String>("session")
                 if (sessionName != null) {
-                    vpnBuilder = Builder().setSession(sessionName)
+                    vpnBuilder = FlutterVpnService.Builder().setSession(sessionName)
                     result.success(true)
                 } else {
                     result.error("INVALID_ARGUMENT", "Session name is null", null)
@@ -73,6 +73,7 @@ class FlutterVpnService : VpnService(), MethodChannel.MethodCallHandler {
     }
 
     // Make the Builder class static
+
     companion object {
         class Builder {
             private val builder = VpnService.Builder()
@@ -107,4 +108,5 @@ class FlutterVpnService : VpnService(), MethodChannel.MethodCallHandler {
             }
         }
     }
+
 }

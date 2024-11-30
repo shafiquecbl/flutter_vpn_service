@@ -23,7 +23,12 @@ class FlutterVpnServicePlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
-    FlutterVpnService.onMethodCall(call, result)
+  // Assuming you have an instance of FlutterVpnService:
+  val vpnService = FlutterVpnService()
+
+  // Now you can call onMethodCall
+  vpnService.onMethodCall(call, result)
+
   }
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {

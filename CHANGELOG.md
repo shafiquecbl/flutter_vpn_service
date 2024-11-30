@@ -1,3 +1,10 @@
+## [1.0.4] - 2024-11-30
+
+- Issue Solved
+  - Unresolved reference: onMethodCall
+  - Type mismatch: inferred type is VpnService.Builder but com.shafique.flutter_vpn_service.FlutterVpnService.Companion.Builder? was expected
+  - Constructor of inner class Builder can be called only with receiver of containing class
+
 ## [1.0.3] - 2024-11-30
 
 - Issue Solved
