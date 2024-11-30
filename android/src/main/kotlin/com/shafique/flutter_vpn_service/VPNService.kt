@@ -2,34 +2,21 @@ package com.shafique.flutter_vpn_service
 
 import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.net.VpnService
 import android.os.ParcelFileDescriptor
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
+import java.net.DatagramSocket
 import java.net.InetAddress
+import java.net.Socket
 
-class FlutterVpnService : VpnService() {
+class FlutterVpnService : VpnService(), MethodChannel.MethodCallHandler {
 
     private var vpnBuilder: Builder? = null
     private var vpnInterface: ParcelFileDescriptor? = null
 
-    companion object {
-        private var vpnServiceInstance: FlutterVpnService? = null
-
-        // This method can be used to handle method calls from the plugin
-        fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
-            // Lazy initialization of the VPN Service if needed
-            if (vpnServiceInstance == null) {
-                vpnServiceInstance = FlutterVpnService()
-            }
-
-            // Delegate method call to the instance
-            vpnServiceInstance?.handleMethodCall(call, result)
-        }
-    }
-
-    // Handle incoming method calls
-    private fun handleMethodCall(call: MethodCall, result: MethodChannel.Result) {
+    override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when (call.method) {
             "prepare" -> {
                 val context = applicationContext
@@ -85,37 +72,39 @@ class FlutterVpnService : VpnService() {
         }
     }
 
-    // VPN Builder class
-    class Builder {
-        private val builder = VpnService.Builder()
+    // Make the Builder class static
+    companion object {
+        class Builder {
+            private val builder = VpnService.Builder()
 
-        fun setSession(session: String): Builder {
-            builder.setSession(session)
-            return this
-        }
+            fun setSession(session: String): Builder {
+                builder.setSession(session)
+                return this
+            }
 
-        fun setMtu(mtu: Int): Builder {
-            builder.setMtu(mtu)
-            return this
-        }
+            fun setMtu(mtu: Int): Builder {
+                builder.setMtu(mtu)
+                return this
+            }
 
-        fun addAddress(address: String, prefixLength: Int): Builder {
-            builder.addAddress(address, prefixLength)
-            return this
-        }
+            fun addAddress(address: String, prefixLength: Int): Builder {
+                builder.addAddress(address, prefixLength)
+                return this
+            }
 
-        fun addRoute(address: String, prefixLength: Int): Builder {
-            builder.addRoute(address, prefixLength)
-            return this
-        }
+            fun addRoute(address: String, prefixLength: Int): Builder {
+                builder.addRoute(address, prefixLength)
+                return this
+            }
 
-        fun setConfigureIntent(intent: PendingIntent): Builder {
-            builder.setConfigureIntent(intent)
-            return this
-        }
+            fun setConfigureIntent(intent: PendingIntent): Builder {
+                builder.setConfigureIntent(intent)
+                return this
+            }
 
-        fun establish(): ParcelFileDescriptor? {
-            return builder.establish()
+            fun establish(): ParcelFileDescriptor? {
+                return builder.establish()
+            }
         }
     }
 }

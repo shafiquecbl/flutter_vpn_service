@@ -1,3 +1,8 @@
+## [1.0.3] - 2024-11-30
+
+- Issue Solved
+  - Constructor of inner class Builder can be called only with receiver of containing class
+
 ## [1.0.2] - 2024-11-30
 
 - Minimum Flutter version set to 3.3.0
