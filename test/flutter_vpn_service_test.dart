@@ -29,6 +29,16 @@ class MockFlutterVpnServicePlatform
   Future<bool> setSession(String session) async {
     return Future.value(true);
   }
+
+  @override
+  Future<void> addRoute(String address, int prefixLength) async {
+    return Future.value();
+  }
+
+  @override
+  Future<void> disconnectVpn() async {
+    return Future.value();
+  }
 }
 
 void main() {}

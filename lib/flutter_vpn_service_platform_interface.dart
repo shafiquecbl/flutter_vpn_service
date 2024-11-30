@@ -31,4 +31,8 @@ abstract class FlutterVpnServicePlatform extends PlatformInterface {
   Future<bool> addAddress(String address, int prefixLength);
 
   Future<bool> establishVpn();
+
+  Future<void> addRoute(String address, int prefixLength);
+
+  Future<void> disconnectVpn();
 }

@@ -50,12 +50,31 @@ class MethodChannelFlutterVpnService extends FlutterVpnServicePlatform {
   }
 
   @override
+  Future<void> addRoute(String address, int prefixLength) async {
+    try {
+      await methodChannel.invokeMethod(
+          'addRoute', {'address': address, 'prefixLength': prefixLength});
+    } on PlatformException catch (e) {
+      throw "Error adding route: ${e.message}";
+    }
+  }
+
+  @override
   Future<bool> establishVpn() async {
     try {
       final bool result = await methodChannel.invokeMethod('establishVpn');
       return result;
     } on PlatformException catch (e) {
       throw "Error establishing VPN: ${e.message}";
+    }
+  }
+
+  @override
+  Future<void> disconnectVpn() async {
+    try {
+      await methodChannel.invokeMethod('disconnectVpn');
+    } on PlatformException catch (e) {
+      throw "Error disconnecting VPN: ${e.message}";
     }
   }
 }

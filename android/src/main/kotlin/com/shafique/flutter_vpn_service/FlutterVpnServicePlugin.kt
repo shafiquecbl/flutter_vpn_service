@@ -24,7 +24,7 @@ class FlutterVpnServicePlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (vpnService == null) {
-      vpnService = FlutterVpnService(context!!)
+      vpnService = FlutterVpnService()
     }
     vpnService?.onMethodCall(call, result)
   }
@@ -33,8 +33,8 @@ class FlutterVpnServicePlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     channel.setMethodCallHandler(null)
   }
 
-  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    // Handle activity attachment if needed
+override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+    FlutterVpnService.context = binding.activity
   }
 
   override fun onDetachedFromActivityForConfigChanges() {

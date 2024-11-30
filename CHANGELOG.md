@@ -1,3 +1,11 @@
+## [1.0.8] - 2024-11-30
+
+- Added method to disconect VPN
+
+## [1.0.7] - 2024-11-30
+
+- Context issue resolved
+
 ## [1.0.6] - 2024-11-30
 
 - Some bugs fixed
