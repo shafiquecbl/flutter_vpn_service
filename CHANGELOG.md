@@ -1,5 +1,9 @@
 ## [1.0.4] - 2024-11-30
 
+- Some bugs fixed
+
+## [1.0.4] - 2024-11-30
+
 - Issue Solved
   - Unresolved reference: onMethodCall
   - Type mismatch: inferred type is VpnService.Builder but com.shafique.flutter_vpn_service.FlutterVpnService.Companion.Builder? was expected

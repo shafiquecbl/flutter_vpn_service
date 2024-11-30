@@ -34,7 +34,7 @@ class FlutterVpnService : VpnService(), MethodChannel.MethodCallHandler {
             "setSession" -> {
                 val sessionName = call.argument<String>("session")
                 if (sessionName != null) {
-                    vpnBuilder = FlutterVpnService.Builder().setSession(sessionName)
+                    vpnBuilder = Builder().setSession(sessionName)
                     result.success(true)
                 } else {
                     result.error("INVALID_ARGUMENT", "Session name is null", null)
@@ -72,41 +72,36 @@ class FlutterVpnService : VpnService(), MethodChannel.MethodCallHandler {
         }
     }
 
-    // Make the Builder class static
+    inner class Builder {
+        private val builder = VpnService.Builder()
 
-    companion object {
-        class Builder {
-            private val builder = VpnService.Builder()
+        fun setSession(session: String): Builder {
+            builder.setSession(session)
+            return this
+        }
 
-            fun setSession(session: String): Builder {
-                builder.setSession(session)
-                return this
-            }
+        fun setMtu(mtu: Int): Builder {
+            builder.setMtu(mtu)
+            return this
+        }
 
-            fun setMtu(mtu: Int): Builder {
-                builder.setMtu(mtu)
-                return this
-            }
+        fun addAddress(address: String, prefixLength: Int): Builder {
+            builder.addAddress(address, prefixLength)
+            return this
+        }
 
-            fun addAddress(address: String, prefixLength: Int): Builder {
-                builder.addAddress(address, prefixLength)
-                return this
-            }
+        fun addRoute(address: String, prefixLength: Int): Builder {
+            builder.addRoute(address, prefixLength)
+            return this
+        }
 
-            fun addRoute(address: String, prefixLength: Int): Builder {
-                builder.addRoute(address, prefixLength)
-                return this
-            }
+        fun setConfigureIntent(intent: PendingIntent): Builder {
+            builder.setConfigureIntent(intent)
+            return this
+        }
 
-            fun setConfigureIntent(intent: PendingIntent): Builder {
-                builder.setConfigureIntent(intent)
-                return this
-            }
-
-            fun establish(): ParcelFileDescriptor? {
-                return builder.establish()
-            }
+        fun establish(): ParcelFileDescriptor? {
+            return builder.establish()
         }
     }
-
 }
