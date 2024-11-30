@@ -11,15 +11,14 @@ import java.net.DatagramSocket
 import java.net.InetAddress
 import java.net.Socket
 
-class FlutterVpnService : VpnService(), MethodChannel.MethodCallHandler {
+class FlutterVpnService(private val context: Context) : VpnService(), MethodChannel.MethodCallHandler {
 
-    private var vpnBuilder: Builder? = null
+    private var vpnBuilder: VpnBuilder? = null
     private var vpnInterface: ParcelFileDescriptor? = null
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when (call.method) {
             "prepare" -> {
-                val context = applicationContext
                 val intent = VpnService.prepare(context)
                 result.success(intent == null) // If null, VPN is already prepared.
             }
@@ -34,7 +33,7 @@ class FlutterVpnService : VpnService(), MethodChannel.MethodCallHandler {
             "setSession" -> {
                 val sessionName = call.argument<String>("session")
                 if (sessionName != null) {
-                    vpnBuilder = Builder().setSession(sessionName)
+                    vpnBuilder = VpnBuilder().setSession(sessionName)
                     result.success(true)
                 } else {
                     result.error("INVALID_ARGUMENT", "Session name is null", null)
@@ -72,30 +71,30 @@ class FlutterVpnService : VpnService(), MethodChannel.MethodCallHandler {
         }
     }
 
-    inner class Builder {
-        private val builder = VpnService.Builder()
+    inner class VpnBuilder {
+        private val builder = Builder()
 
-        fun setSession(session: String): Builder {
+        fun setSession(session: String): VpnBuilder {
             builder.setSession(session)
             return this
         }
 
-        fun setMtu(mtu: Int): Builder {
+        fun setMtu(mtu: Int): VpnBuilder {
             builder.setMtu(mtu)
             return this
         }
 
-        fun addAddress(address: String, prefixLength: Int): Builder {
+        fun addAddress(address: String, prefixLength: Int): VpnBuilder {
             builder.addAddress(address, prefixLength)
             return this
         }
 
-        fun addRoute(address: String, prefixLength: Int): Builder {
+        fun addRoute(address: String, prefixLength: Int): VpnBuilder {
             builder.addRoute(address, prefixLength)
             return this
         }
 
-        fun setConfigureIntent(intent: PendingIntent): Builder {
+        fun setConfigureIntent(intent: PendingIntent): VpnBuilder {
             builder.setConfigureIntent(intent)
             return this
         }

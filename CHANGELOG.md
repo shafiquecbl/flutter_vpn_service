@@ -1,3 +1,7 @@
+## [1.0.6] - 2024-11-30
+
+- Some bugs fixed
+
 ## [1.0.5] - 2024-11-30
 
 - Some bugs fixed
