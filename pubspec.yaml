@@ -1,10 +1,10 @@
 name: flutter_vpn_service
 description: "A Flutter plugin for interacting with Android's VPNService."
-version: 1.0.0
-homepage: "https://github.com/shafiquecbl/vpn_service_plugin"
+version: 1.0.2
+homepage: "https://github.com/shafiquecbl/flutter_vpn_service"
 
 environment:
-  sdk: '>=3.3.4 <4.0.0'
+  sdk: '>=2.18.0 <4.0.0'
   flutter: '>=3.3.0'
 
 dependencies:
