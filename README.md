@@ -33,18 +33,7 @@ dependencies:
 flutter pub get
 ```
 
-### 3. Configure your Android project:
-
-Ensure that your Android app has the necessary permissions and configurations for using the VPN service. Add the following to your AndroidManifest.xml:
-
-```xml
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-<uses-permission android:name="android.permission.VPN"/>
-<uses-feature android:name="android.hardware.vpn" android:required="true"/>
-```
-
-### 4. Platform-Specific Configuration:
+### 3. Platform-Specific Configuration:
 
 Android: The plugin currently supports Android and does not require any special configurations beyond the AndroidManifest.xml permissions above.
 
@@ -165,16 +154,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-```
-
-## Notes
-
-Permissions: Make sure your Android app has the required permissions for using the VPN
-
-```xml
-<uses-permission android:name="android.permission.VPN"/>
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 ```
 
 Testing: This plugin is designed to work on Android. Make sure to test it on a physical device rather than an emulator, as VPN functionality may not work properly on an emulator.
