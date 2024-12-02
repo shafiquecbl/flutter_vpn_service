@@ -9,7 +9,7 @@ class MethodChannelFlutterVpnService extends FlutterVpnServicePlatform {
   @override
   Future<bool> prepare() async {
     try {
-      final bool isPrepared = await methodChannel.invokeMethod('prepare');
+      final bool isPrepared = await methodChannel.invokeMethod('prepareVpn');
       return isPrepared;
     } on PlatformException catch (e) {
       throw "Error preparing VPN: ${e.message}";

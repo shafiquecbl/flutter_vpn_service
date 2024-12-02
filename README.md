@@ -17,7 +17,7 @@ A Flutter plugin for managing VPN services on Android. This plugin allows you to
 dependencies:
   flutter_vpn_service:
     git:
-      url: https://github.com/your_username/flutter_vpn_service.git
+      url: https://github.com/shafiquecbl/flutter_vpn_service.git
 ```
 
 ### Alternatively, if you have published the package on pub.dev, you can add it like this:

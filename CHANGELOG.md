@@ -1,3 +1,11 @@
+## [1.1.0] - 2024-12-2
+
+- Fixed some issues
+
+## [1.0.9] - 2024-11-30
+
+- Fixed issue for prepare method
+
 ## [1.0.8] - 2024-11-30
 
 - Added method to disconect VPN
